@@ -1,0 +1,5 @@
+resources:
+- clusterTemplate.yaml
+
+configurations:
+- configurations.yaml
