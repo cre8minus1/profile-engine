@@ -68,55 +68,6 @@ spec:
   sshKeyName: anmol-hybrid-dev
   version: v1.24
 ---
-apiVersion: controlplane.cluster.x-k8s.io/v1beta1
-kind: AWSManagedControlPlane
-metadata:
-  name: sjcprd-template-base-control-plane
-spec:
-  addons:
-  - conflictResolution: overwrite
-    name: vpc-cni
-    version: v1.12.0-eksbuild.2
-  - conflictResolution: overwrite
-    name: coredns
-    version: v1.8.7-eksbuild.3
-  - conflictResolution: overwrite
-    name: kube-proxy
-    version: v1.24.9-eksbuild.1
-  disableVPCCNI: false
-  eksClusterName: sjcprd-template-base
-  endpointAccess:
-    private: true
-    public: true
-    publicCIDRs:
-    - 0.0.0.0/0
-  identityRef:
-    kind: AWSClusterStaticIdentity
-    name: 9dbf835bed844848acb0fa1ec17a0842-aws-dev
-  logging:
-    apiServer: true
-    audit: true
-    authenticator: true
-    controllerManager: true
-    scheduler: true
-  network:
-    subnets:
-    - availabilityZone: us-west-2a
-      cidrBlock: 10.0.0.0/20
-      isPublic: true
-    - availabilityZone: us-west-2a
-      cidrBlock: 10.0.128.0/20
-      isPublic: false
-    - availabilityZone: us-west-2b
-      cidrBlock: 10.0.16.0/20
-      isPublic: true
-    - availabilityZone: us-west-2b
-      cidrBlock: 10.0.144.0/20
-      isPublic: false
-  region: us-west-2
-  sshKeyName: anmol-hybrid-dev
-  version: v1.24
----
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
