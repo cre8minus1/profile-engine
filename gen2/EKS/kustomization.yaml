@@ -1,0 +1,5 @@
+resources:
+- eks-base-sjcprd-example.yaml
+
+configurations:
+- configurations.yaml
