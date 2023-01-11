@@ -28,7 +28,6 @@ spec:
     crossZoneLoadBalancing: false
     healthCheckProtocol: TCP
     scheme: internet-facing
-  eksClusterName: sjcprd01-clusterTemplate
   identityRef:
     kind: AWSClusterStaticIdentity
     name: 9dbf835bed844848acb0fa1ec17a0842-aws-dev
