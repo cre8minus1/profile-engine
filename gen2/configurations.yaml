@@ -13,7 +13,7 @@ nameReference:
   - path: spec/template/spec/clusterName
     kind: MachinePool
   - path: spec/eksClusterName
-    kind: AWSManagedControlPlane
+    kind: NodeletControlPlane
 - kind: AWSCluster
   group: infrastructure.cluster.x-k8s.io
   version: v1beta1
