@@ -1,0 +1,37 @@
+Ensure the following pre-reqs are set
+1. ArgoCD is connected with a valid authentication token to your Git Repository 
+2. ArgoCD CLI is installed and authenticated to your Platform9 ArgoCD Instance 
+3. GitHub CLI &/Or Desktop app are installed and connected to your Git Repository
+4. 
+
+
+Validate that arlonctl 
+``` arlonctl verify ```
+
+✓ Successfully verified kubectl status
+✓ [Optional] Successfully verified git status
+! [Optional] Error while verifying Argocd CLI status:  install argocd v2.4.x to run arlonctl
+
+✓ All mandatory requirements are installed
+
+
+
+
+Set Context to your Platform9 Instnace 
+``` arlonctl context create ```
+
+Get Cloud Provider name from ArlonCtl
+``` arlonctl cloudprovider list
+NAME     CLOUDPROVIDER
+aws-dev  9dbf835bed844848acb0fa1ec17a0842-aws-dev
+azure    9dbf835bed844848acb0fa1ec17a0842-azure
+```
+
+
+
+
+## prepare the git repo 
+arlonctl basecluster preparegit --repo-url https://github.com/cre8minus1/profile-engine --repo-path /gen2/eks --ducloudprovider 9dbf835bed844848acb0fa1ec17a0842-aws-dev
+
+
+arlonctl cluster create --cluster-name sjcprd01-eks-gen2-test2 --repo-url https://github.com/cre8minus1/profile-engine --repo-path gen2/EKS --profile dynamic-prod 
