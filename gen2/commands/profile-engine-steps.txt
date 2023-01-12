@@ -1,7 +1,8 @@
 Ensure the following pre-reqs are set
 1. ArgoCD is connected with a valid authentication token to your Git Repository 
 2. ArgoCD CLI is installed and authenticated to your Platform9 ArgoCD Instance 
-3. 
+3. GitHub CLI &/Or Desktop app are installed and connected to your Git Repository
+4. 
 
 
 Validate that arlonctl 
