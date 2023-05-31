@@ -43,7 +43,7 @@ spec:
     - 0.0.0.0/0
   identityRef:
     kind: AWSClusterStaticIdentity
-    name: 9dbf835bed844848acb0fa1ec17a0842-aws-dev
+    name: 9dbf835bed844848acb0fa1ec17a0842-eks-for-product
   logging:
     apiServer: true
     audit: true
