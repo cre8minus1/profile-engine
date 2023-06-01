@@ -43,7 +43,7 @@ spec:
     - 0.0.0.0/0
   identityRef:
     kind: AWSClusterStaticIdentity
-    name: 9dbf835bed844848acb0fa1ec17a0842-aws-dev
+    name: 9dbf835bed844848acb0fa1ec17a0842-eks-for-product
   logging:
     apiServer: true
     audit: true
@@ -65,7 +65,7 @@ spec:
       cidrBlock: 10.0.144.0/20
       isPublic: false
   region: us-west-2
-  sshKeyName: anmol-hybrid-dev
+  sshKeyName: Pushkar-test
   version: v1.24
 ---
 apiVersion: cluster.x-k8s.io/v1beta1
@@ -110,7 +110,7 @@ spec:
       ami: {}
       iamInstanceProfile: nodes.cluster-api-provider-aws.sigs.k8s.io
       instanceType: t2.medium
-      sshKeyName: anmol-hybrid-dev
+      sshKeyName: Pushkar-test
 ---
 apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
 kind: EKSConfigTemplate
