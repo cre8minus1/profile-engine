@@ -43,4 +43,4 @@ azure    9dbf835bed844848acb0fa1ec17a0842-azure
 arlonctl basecluster preparegit --repo-url https://github.com/cre8minus1/profile-engine --repo-path /gen2/eks --ducloudprovider 9dbf835bed844848acb0fa1ec17a0842-aws-dev
 
 
-arlonctl cluster create --cluster-name sjcprd01-eks-gen2-test2 --repo-url https://github.com/cre8minus1/profile-engine --repo-path gen2/EKS --profile dynamic-prod 
+arlonctl cluster create --cluster-name sjcprd01-eks-gen2-test3 --repo-url https://github.com/cre8minus1/profile-engine --repo-path gen2/EKS --profile dynamic-prod 
