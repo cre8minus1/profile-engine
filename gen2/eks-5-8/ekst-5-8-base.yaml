@@ -2,15 +2,14 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
   name: eks-test4
-  namespace: default
 spec:
   clusterNetwork:
     pods:
       cidrBlocks:
-        - 10.20.0.0/16
+      - 10.20.0.0/16
     services:
       cidrBlocks:
-        - 10.21.0.0/16
+      - 10.21.0.0/16
   controlPlaneRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1beta1
     kind: AWSManagedControlPlane
@@ -20,61 +19,59 @@ spec:
     kind: AWSManagedControlPlane
     name: eks-test4-control-plane
 ---
-kind: AWSManagedControlPlane
 apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+kind: AWSManagedControlPlane
 metadata:
   name: eks-test4-control-plane
-  namespace: default
 spec:
   addons:
-    - name: vpc-cni
-      version: v1.12.6-eksbuild.2
-      conflictResolution: overwrite
-    - name: coredns
-      version: v1.9.3-eksbuild.3
-      conflictResolution: overwrite
-    - name: kube-proxy
-      version: v1.24.10-eksbuild.2
-      conflictResolution: overwrite
-  region: us-west-2
-  sshKeyName: Pushkar-test
-  version: v1.24
-  eksClusterName: eks-test4
+  - conflictResolution: overwrite
+    name: vpc-cni
+    version: v1.12.6-eksbuild.2
+  - conflictResolution: overwrite
+    name: coredns
+    version: v1.9.3-eksbuild.3
+  - conflictResolution: overwrite
+    name: kube-proxy
+    version: v1.24.10-eksbuild.2
   disableVPCCNI: false
+  eksClusterName: eks-test4
+  endpointAccess:
+    private: true
+    public: true
+    publicCIDRs:
+    - 0.0.0.0/0
+  identityRef:
+    kind: AWSClusterStaticIdentity
+    name: 9dbf835bed844848acb0fa1ec17a0842-eks-for-product
   logging:
     apiServer: false
     audit: false
     authenticator: false
     controllerManager: false
     scheduler: false
-  endpointAccess:
-    private: true
-    public: true
-    publicCIDRs:
-      - 0.0.0.0/0
-  identityRef:
-    kind: AWSClusterStaticIdentity
-    name: 9dbf835bed844848acb0fa1ec17a0842-eks-for-product
   network:
     subnets:
-      - cidrBlock: 10.0.0.0/20
-        isPublic: true
-        availabilityZone: us-west-2d
-      - cidrBlock: 10.0.128.0/20
-        isPublic: false
-        availabilityZone: us-west-2d
-      - cidrBlock: 10.0.16.0/20
-        isPublic: true
-        availabilityZone: us-west-2c
-      - cidrBlock: 10.0.144.0/20
-        isPublic: false
-        availabilityZone: us-west-2c
+    - availabilityZone: us-west-2d
+      cidrBlock: 10.0.0.0/20
+      isPublic: true
+    - availabilityZone: us-west-2d
+      cidrBlock: 10.0.128.0/20
+      isPublic: false
+    - availabilityZone: us-west-2c
+      cidrBlock: 10.0.16.0/20
+      isPublic: true
+    - availabilityZone: us-west-2c
+      cidrBlock: 10.0.144.0/20
+      isPublic: false
+  region: us-west-2
+  sshKeyName: Pushkar-test
+  version: v1.24
 ---
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachinePool
 metadata:
   name: eks-test4-mmp-0
-  namespace: default
 spec:
   clusterName: eks-test4
   replicas: 3
@@ -96,18 +93,17 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: AWSManagedMachinePool
 metadata:
   name: eks-test4-mmp-0
-  namespace: default
 spec:
   amiType: AL2_x86_64
   availabilityZones:
-    - us-west-2d
+  - us-west-2d
+  capacityType: onDemand
   eksNodegroupName: eks-test4-mmp-0
   instanceType: t2.medium
-  capacityType: onDemand
-  scaling:
-    minSize: 1
-    maxSize: 3
   labels: {}
+  scaling:
+    maxSize: 3
+    minSize: 1
   taints: []
   updateConfig:
     maxUnavailable: 1
@@ -116,7 +112,6 @@ apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
 kind: EKSConfig
 metadata:
   name: eks-test4-mmp-0
-  namespace: default
 spec:
   apiRetryAttempts: 1500
 ---
@@ -124,18 +119,17 @@ apiVersion: sunpike.platform9.com/v1alpha2
 kind: ClusterAddon
 metadata:
   labels:
+    clusterName: eks-test4
     sunpike.pf9.io/cluster: eks-test4
     type: metrics-server
-    clusterName: eks-test4
   name: eks-test4-metrics-server
-  namespace: default
 spec:
   override:
     params:
-      - name: metricsCpuLimit
-        value: 100m
-      - name: metricsMemoryLimit
-        value: 300Mi
+    - name: metricsCpuLimit
+      value: 100m
+    - name: metricsMemoryLimit
+      value: 300Mi
   type: metrics-server
   version: 0.5.2
   watch: true
@@ -144,18 +138,17 @@ apiVersion: sunpike.platform9.com/v1alpha2
 kind: ClusterAddon
 metadata:
   labels:
+    clusterName: eks-test4
     sunpike.pf9.io/cluster: eks-test4
     type: cluster-auto-scaler-capi
-    clusterName: eks-test4
   name: eks-test4-cluster-auto-scaler-capi
-  namespace: default
 spec:
   override:
     params:
-      - name: clusterAutoscalerNamespace
-        value: kube-system
-      - name: clusterNamespace
-        value: default
+    - name: clusterAutoscalerNamespace
+      value: kube-system
+    - name: clusterNamespace
+      value: default
   type: cluster-auto-scaler-capi
   version: 1.24.0
   watch: true
@@ -164,16 +157,15 @@ apiVersion: sunpike.platform9.com/v1alpha2
 kind: ClusterAddon
 metadata:
   labels:
+    clusterName: eks-test4
     sunpike.pf9.io/cluster: eks-test4
     type: monitoring
-    clusterName: eks-test4
   name: eks-test4-monitoring
-  namespace: default
 spec:
   override:
     params:
-      - name: retentionTime
-        value: 7d
+    - name: retentionTime
+      value: 7d
   type: monitoring
   version: 0.57.2
   watch: true
