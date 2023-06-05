@@ -1,0 +1,5 @@
+resources:
+- ekst-5-8-base.yaml
+
+configurations:
+- configurations.yaml
