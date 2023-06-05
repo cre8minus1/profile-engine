@@ -44,6 +44,11 @@ azure    9dbf835bed844848acb0fa1ec17a0842-azure
 ## prepare the git repo 
 arlonctl basecluster preparegit --repo-url https://github.com/cre8minus1/profile-engine --repo-path /gen2/eks-5-8 --ducloudprovider 9dbf835bed844848acb0fa1ec17a0842-eks-for-product
 
+arlonctl basecluster preparegit --repo-url https://github.com/cre8minus1/profile-engine --repo-path /gen2/rene-base --ducloudprovider 9dbf835bed844848acb0fa1ec17a0842-se-aws
+
+
+
+
 
 arlonctl cluster create --cluster-name eks-june-2 --repo-url https://github.com/cre8minus1/profile-engine --repo-path gen2/eks-5-8 --profile dynamic-prod 
 
