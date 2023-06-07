@@ -10,8 +10,6 @@ Login/Refresh SaaS Management Plane Kubeconfig
 Logi into 
 ``` argocd login product.platform9.net --sso --grpc-web-root-path argocd ```
 
-
-
 Validate that arlonctl 
 ``` arlonctl verify ```
 
@@ -20,9 +18,6 @@ Validate that arlonctl
 ! [Optional] Error while verifying Argocd CLI status:  install argocd v2.4.x to run arlonctl
 
 ✓ All mandatory requirements are installed
-
-
-
 
 Set Context to your Platform9 Instnace 
 ``` arlonctl context create ```
@@ -47,9 +42,6 @@ arlonctl basecluster preparegit --repo-url https://github.com/cre8minus1/profile
 arlonctl basecluster preparegit --repo-url https://github.com/cre8minus1/profile-engine --repo-path /gen2/rene-base --ducloudprovider 9dbf835bed844848acb0fa1ec17a0842-se-aws
 
 
+arlonctl cluster create --cluster-name eks-june-5 --repo-url https://github.com/cre8minus1/profile-engine --repo-path gen2/rene-base --profile dynamic-prod 
 
-
-
-arlonctl cluster create --cluster-name eks-june-2 --repo-url https://github.com/cre8minus1/profile-engine --repo-path gen2/eks-5-8 --profile dynamic-prod 
-
-arlonctl basecluster validategit --repo-url https://github.com/cre8minus1/profile-engine --repo-path /gen2/eks
+arlonctl basecluster validategit --repo-url https://github.com/cre8minus1/profile-engine --repo-path /gen2/rene-base
